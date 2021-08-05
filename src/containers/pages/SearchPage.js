@@ -1,11 +1,11 @@
 import React from "react";
-import SearchTemplate from "../../components/search/SearchTemplate";
+import CseggTemplate from "../../components/template/CseggTemplate";
 import SearchForm from "../../components/search/SearchForm";
 
 export default function SearchPage() {
   return (
-    <SearchTemplate>
+    <CseggTemplate>
       <SearchForm />
-    </SearchTemplate>
+    </CseggTemplate>
   );
 }

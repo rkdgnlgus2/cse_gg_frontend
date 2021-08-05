@@ -1,11 +1,10 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import HistoryIcon from "@material-ui/icons/History";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -27,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
-    position: "fixed",
+    position: "relative",
     left: 0,
     right: 0,
     bottom: 0,
   },
 }));
 
-export default function SearchTemplate({ children }) {
+export default function CseggTemplate({ children }) {
   const classes = useStyles();
 
   return (
@@ -44,7 +43,9 @@ export default function SearchTemplate({ children }) {
         <Toolbar>
           {/*<HistoryIcon className={classes.icon} />*/}
           <Typography variant="h6" color="inherit" noWrap>
-            CSE_GG
+            <Link to="/" style={{ color: "#FFF", textDecoration: "none" }}>
+              CSE_GG
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>

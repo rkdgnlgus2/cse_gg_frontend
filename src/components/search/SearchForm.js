@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { BrowserRouter, withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -45,54 +46,71 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchForm() {
+function SearchForm({ history }) {
   const classes = useStyles();
+  const [nickname, setNickname] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted! nickname:" + nickname);
+    history.push(`match/${nickname}`);
+  };
+
+  const onChange = (e) => {
+    e.preventDefault();
+    setNickname(e.target.value);
+  };
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <div className={classes.heroContent}>
-        <Container maxWidth="sm">
-          <Typography
-            component="h1"
-            variant="h2"
-            align="center"
-            color="textPrimary"
-            gutterBottom
-          >
-            CSE_GG
-          </Typography>
-          <Typography
-            variant="h5"
-            align="center"
-            color="textSecondary"
-            paragraph
-          >
-            Show me what you got..
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Search match history by nickname..."
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
+    <BrowserRouter>
+      <React.Fragment>
+        <CssBaseline />
+        <div className={classes.heroContent}>
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
             >
-              Search
-            </Button>
-          </form>
-        </Container>
-      </div>
-    </React.Fragment>
+              CSE_GG
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              Show me what you got..
+            </Typography>
+            <form className={classes.form} onSubmit={onSubmit} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                id="email"
+                label="Search match history by nickname..."
+                name="email"
+                autoComplete="email"
+                autoFocus
+                onChange={onChange}
+              />
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Search
+              </Button>
+            </form>
+          </Container>
+        </div>
+      </React.Fragment>
+    </BrowserRouter>
   );
 }
+
+export default withRouter(SearchForm);
