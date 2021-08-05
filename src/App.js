@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact render={SearchPage} />
-        <Route path="/match/:username" exact render={MatchPage} />
+        <Route path="/match/:summonerName" exact render={MatchPage} />
         <Redirect from="" to="/" />
       </Switch>
     </BrowserRouter>

@@ -48,17 +48,17 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchForm({ history }) {
   const classes = useStyles();
-  const [nickname, setNickname] = useState("");
+  const [summonerName, setSummonerName] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted! nickname:" + nickname);
-    history.push(`match/${nickname}`);
+    console.log("submitted! nickname:" + summonerName);
+    history.push(`match/${summonerName}`);
   };
 
   const onChange = (e) => {
     e.preventDefault();
-    setNickname(e.target.value);
+    setSummonerName(e.target.value);
   };
 
   return (

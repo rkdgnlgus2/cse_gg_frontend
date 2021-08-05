@@ -47,7 +47,7 @@ export default function SummonerInfo() {
           <Grid container spacing={3}>
             <Grid item xs={6} md={6} lg={9}>
               <TextField
-                id="standard-read-only-input"
+                id="summonerName"
                 defaultValue="소환사명"
                 fullWidth
                 InputProps={{

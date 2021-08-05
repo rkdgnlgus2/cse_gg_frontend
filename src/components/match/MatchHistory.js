@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -72,7 +72,7 @@ function Row(props) {
           <TextField
             inputProps={{ style: { fontSize: 10, textAlign: "center" } }}
             InputProps={{ disableUnderline: true }}
-            id="standard-multiline-flexible"
+            id="mode-and-time"
             multiline
             value={"무작위 총력전\n5일 전\n패배\n33분 25초"}
             maxRows={4}
@@ -201,10 +201,13 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
 ];
 
-export default function CollapsibleTable() {
+export default function MatchHistory({ matchInfo }) {
+  useEffect(() => {
+    console.log(matchInfo);
+  }, [matchInfo]);
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+      <Table aria-label="match history">
         <TableBody>
           {rows.map((row) => (
             <Row key={row.name} row={row} />

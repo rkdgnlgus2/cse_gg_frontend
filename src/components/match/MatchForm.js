@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,6 +9,9 @@ import Paper from "@material-ui/core/Paper";
 import MatchHistory from "./MatchHistory";
 import SummonerIcon from "./SummonerIcon";
 import SummonerInfo from "./SummonerInfo";
+
+import * as summonerAPI from "../../lib/api/summoner";
+import * as matchAPI from "../../lib/api/match";
 
 const drawerWidth = 240;
 
@@ -91,13 +94,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MatchForm({ username }) {
+export default function MatchForm({ summonerName }) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const [matchInfo, setMatchInfo] = useState(null);
+  const [summonerInfo, setSummonerInfo] = useState(null);
+
+  const getFetch = useCallback(
+    (request) => {
+      fetch(`${request}${summonerName}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          console.log("input");
+          if (!response.ok) {
+            console.log("wtf error occured");
+            let err = new Error("HTTP status code: " + response.status);
+            err.response = response;
+            err.status = response.status;
+            throw err;
+          }
+          console.log(response);
+          return response.json();
+        })
+        .then((response) => {
+          if (request === matchAPI.getHistory) {
+            setMatchInfo(response);
+          } else {
+            setSummonerInfo(response);
+          }
+        })
+        .catch((e) => console.log(e));
+    },
+    [summonerName]
+  );
+
   useEffect(() => {
-    console.log("showing username:" + username);
-  }, [username]);
+    console.log("showing summonerName:" + summonerName);
+    getFetch(matchAPI.getHistory);
+    getFetch(summonerAPI.summoner);
+  }, [getFetch, summonerName]);
 
   return (
     <div className={classes.root}>
@@ -117,7 +155,7 @@ export default function MatchForm({ username }) {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <MatchHistory />
+                <MatchHistory matchInfo={matchInfo} />
               </Paper>
             </Grid>
           </Grid>
