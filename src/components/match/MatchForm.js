@@ -104,7 +104,6 @@ export default function MatchForm({ summonerName }) {
   const getFetch = useCallback(
     (request) => {
       fetch(`${request}${summonerName}`, {
-        method: "GET",
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => {

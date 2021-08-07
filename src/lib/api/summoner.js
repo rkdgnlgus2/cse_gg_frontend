@@ -1,3 +1,3 @@
 import { backendurl } from "./backendurl";
 
-export const summoner = `api/v1/summoner/`;
+export const summoner = `${backendurl}api/v1/summoner/`;
