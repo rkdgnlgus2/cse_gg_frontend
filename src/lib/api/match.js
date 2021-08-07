@@ -1,4 +1,4 @@
-import backendurl from './backendurl';
+import { backendurl } from "./backendurl";
 
 export const getHistory = `${backendurl}api/v1/match_history/`;
 
