@@ -108,7 +108,7 @@ export default function MatchForm({ summonerName }) {
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => {
-          console.log("input");
+          console.log(`request fetched to ${request}${summonerName}`);
           if (!response.ok) {
             console.log("wtf error occured");
             let err = new Error("HTTP status code: " + response.status);
