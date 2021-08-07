@@ -134,7 +134,7 @@ export default function MatchForm({ summonerName }) {
   useEffect(() => {
     console.log("showing summonerName:" + summonerName);
     getFetch(matchAPI.getHistory);
-    getFetch(summonerAPI.summoner);
+    //getFetch(summonerAPI.summoner);
   }, [getFetch, summonerName]);
 
   return (
