@@ -5,6 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import axios from "axios";
 
 import MatchHistory from "./MatchHistory";
 import SummonerIcon from "./SummonerIcon";
@@ -104,6 +105,7 @@ export default function MatchForm({ summonerName }) {
   const getFetch = useCallback(
     (request) => {
       fetch(`${request}${summonerName}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
       })
         .then((response) => {
@@ -130,11 +132,12 @@ export default function MatchForm({ summonerName }) {
     [summonerName]
   );
 
-  useEffect(() => {
+  getFetch(matchAPI.getHistory);
+
+  /*useEffect(() => {
     console.log("showing summonerName:" + summonerName);
     getFetch(matchAPI.getHistory);
-    //getFetch(summonerAPI.summoner);
-  }, [getFetch, summonerName]);
+  }, [getFetch, summonerName]);*/
 
   return (
     <div className={classes.root}>
