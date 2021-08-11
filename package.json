@@ -102,7 +102,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080/",
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -159,5 +158,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "proxy":"http://3.37.201.192:8080/"
 }

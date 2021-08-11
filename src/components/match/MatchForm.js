@@ -135,7 +135,7 @@ function MatchForm({ summonerName }) {
   const getMatchInfo = async () => {
     try {
       const matchInfo = await axios.get(
-        `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
+        `${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo);
       return;
