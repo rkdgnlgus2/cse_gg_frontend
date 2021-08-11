@@ -144,15 +144,11 @@ function MatchForm({ summonerName }) {
     }
   };
 
-  getMatchInfo();
-
-  //getFetch(matchAPI.getHistory);
-
   useEffect(() => {
     console.log("showing summonerName:" + summonerName);
     console.log("getting matchHistory of " + summonerName);
     getMatchInfo();
-  });
+  }, []);
 
   /*useEffect(() => {
     console.log("showing summonerName:" + summonerName);
