@@ -201,8 +201,9 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
 ];
 
-export default function MatchHistory({ matchInfo }) {
+export default function MatchHistory({ matchInfo }) {}
   useEffect(() => {
+    console.log("im in matchhistory");
     console.log(matchInfo);
   }, [matchInfo]);
   return (
