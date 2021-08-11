@@ -203,8 +203,11 @@ const rows = [
 
 export default function MatchHistory({ matchInfo }) {
   useEffect(() => {
+    if (!matchInfo) {
+      console.log("props didn't come yet");
+    }
     console.log("im in matchhistory");
-    console.log(matchInfo);
+    console.log(matchInfo[0]);
   }, [matchInfo]);
   return (
     <TableContainer component={Paper}>
