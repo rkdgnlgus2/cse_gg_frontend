@@ -62,54 +62,52 @@ function SearchForm({ history }) {
   };
 
   return (
-    <BrowserRouter>
-      <React.Fragment>
-        <CssBaseline />
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
+    <React.Fragment>
+      <CssBaseline />
+      <div className={classes.heroContent}>
+        <Container maxWidth="sm">
+          <Typography
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+          >
+            CSE_GG
+          </Typography>
+          <Typography
+            variant="h5"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            Show me what you got..
+          </Typography>
+          <form className={classes.form} onSubmit={onSubmit} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Search match history by nickname..."
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={onChange}
+            />
+            <Button
+              fullWidth
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
             >
-              CSE_GG
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Show me what you got..
-            </Typography>
-            <form className={classes.form} onSubmit={onSubmit} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                id="email"
-                label="Search match history by nickname..."
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={onChange}
-              />
-              <Button
-                fullWidth
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Search
-              </Button>
-            </form>
-          </Container>
-        </div>
-      </React.Fragment>
-    </BrowserRouter>
+              Search
+            </Button>
+          </form>
+        </Container>
+      </div>
+    </React.Fragment>
   );
 }
 

@@ -95,14 +95,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MatchForm({ summonerName }) {
+function MatchForm({ summonerName }) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [matchInfo, setMatchInfo] = useState(null);
   const [summonerInfo, setSummonerInfo] = useState(null);
 
-  const getFetch = useCallback(
+  /*const getFetch = useCallback(
     (request) => {
       fetch(`${request}${summonerName}`, {
         method: "GET",
@@ -130,9 +130,29 @@ export default function MatchForm({ summonerName }) {
         .catch((e) => console.log(e));
     },
     [summonerName]
-  );
+  );*/
 
-  getFetch(matchAPI.getHistory);
+  const getMatchInfo = async () => {
+    try {
+      const matchInfo = await axios.get(
+        `${matchAPI.getHistory}${summonerName}`
+      );
+      setMatchInfo(matchInfo);
+      return;
+    } catch {
+      console.log("matchhistory error");
+    }
+  };
+
+  getMatchInfo();
+
+  //getFetch(matchAPI.getHistory);
+
+  useEffect(() => {
+    console.log("showing summonerName:" + summonerName);
+    console.log("getting matchHistory of " + summonerName);
+    getMatchInfo();
+  });
 
   /*useEffect(() => {
     console.log("showing summonerName:" + summonerName);
@@ -166,3 +186,5 @@ export default function MatchForm({ summonerName }) {
     </div>
   );
 }
+
+export default MatchForm;
