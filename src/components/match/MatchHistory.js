@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -15,6 +16,8 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+
+import * as matchAPI from "../../lib/api/match";
 
 const useRowStyles = makeStyles({
   root: {
@@ -53,7 +56,7 @@ function createData(name, calories, fat, carbs, protein, price) {
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
   return (
@@ -201,7 +204,27 @@ const rows = [
   createData("Gingerbread5", 356, 16.0, 49, 3.9, 1.5),
 ];
 
-export default function MatchHistory({ matchInfo }) {
+export default function MatchHistory({ summonerName }) {
+  const [matchInfo, setMatchInfo] = useState(null);
+
+  const getMatchInfo = async () => {
+    try {
+      const matchInfo = await axios.get(
+        `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
+      );
+      setMatchInfo(matchInfo.data);
+      return;
+    } catch {
+      console.log("matchhistory error");
+    }
+  };
+
+  useEffect(() => {
+    console.log("showing summonerName:" + summonerName);
+    console.log("getting matchHistory of " + summonerName);
+    getMatchInfo();
+  }, []);
+
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
@@ -210,6 +233,7 @@ export default function MatchHistory({ matchInfo }) {
       console.log(matchInfo[0].info.gameMode);
     }
   }, [matchInfo]);
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="match history">

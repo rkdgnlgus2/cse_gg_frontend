@@ -12,7 +12,6 @@ import SummonerIcon from "./SummonerIcon";
 import SummonerInfo from "./SummonerInfo";
 
 import * as summonerAPI from "../../lib/api/summoner";
-import * as matchAPI from "../../lib/api/match";
 
 const drawerWidth = 240;
 
@@ -99,62 +98,6 @@ function MatchForm({ summonerName }) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const [matchInfo, setMatchInfo] = useState(null);
-  const [summonerInfo, setSummonerInfo] = useState(null);
-
-  /*const getFetch = useCallback(
-    (request) => {
-      fetch(`${request}${summonerName}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((response) => {
-          console.log(`request fetched to ${request}${summonerName}`);
-          if (!response.ok) {
-            console.log("wtf error occured");
-            let err = new Error("HTTP status code: " + response.status);
-            err.response = response;
-            err.status = response.status;
-            throw err;
-          }
-          console.log(response);
-          return response.json();
-        })
-        .then((response) => {
-          if (request === matchAPI.getHistory) {
-            setMatchInfo(response);
-          } else {
-            setSummonerInfo(response);
-          }
-        })
-        .catch((e) => console.log(e));
-    },
-    [summonerName]
-  );*/
-
-  const getMatchInfo = async () => {
-    try {
-      const matchInfo = await axios.get(
-        `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
-      );
-      setMatchInfo(matchInfo.data);
-      return;
-    } catch {
-      console.log("matchhistory error");
-    }
-  };
-
-  useEffect(() => {
-    console.log("showing summonerName:" + summonerName);
-    console.log("getting matchHistory of " + summonerName);
-    getMatchInfo();
-  }, []);
-
-  /*useEffect(() => {
-    console.log("showing summonerName:" + summonerName);
-    getFetch(matchAPI.getHistory);
-  }, [getFetch, summonerName]);*/
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -173,7 +116,7 @@ function MatchForm({ summonerName }) {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <MatchHistory matchInfo={matchInfo} />
+                <MatchHistory summonerName={summonerName} />
               </Paper>
             </Grid>
           </Grid>
