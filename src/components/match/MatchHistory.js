@@ -3,7 +3,10 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
 import Collapse from "@material-ui/core/Collapse";
+import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -25,13 +28,27 @@ const useRowStyles = makeStyles({
       borderBottom: "unset",
     },
   },
+  bigCard: {
+    width: 80,
+    height: 80,
+    margin: "auto",
+  },
+  smallCard: {
+    width: 40,
+    height: 40,
+    margin: "auto",
+  },
+  Content: {
+    height: "100%",
+    width: "100%",
+  },
   championCircle: {
     height: 50,
     width: 50,
   },
   ingameItems: {
-    height: 50,
-    width: 100,
+    height: 80,
+    width: 160,
   },
   players: {
     height: 100,
@@ -82,22 +99,57 @@ function Row(props) {
           />
         </TableCell>
         <TableCell style={{ width: 50 }}>
-          <Paper
-            variant="outlined"
-            square={false}
-            className={classes.championCircle}
-          >
-            챔피언이미지
-          </Paper>
+          <Card className={classes.bigCard}>
+            <CardMedia
+              className={classes.Content}
+              image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Aatrox.png"
+            />
+          </Card>
         </TableCell>
-        <TableCell style={{ width: 125 }}>
-          <Paper
-            variant="outlined"
-            square={false}
-            className={classes.championCircle}
-          >
-            소환사 주문 등
-          </Paper>
+        <TableCell style={{ width: 100 }}>
+          <Card className={classes.bigCard}>
+            <Grid
+              container
+              spacing={0}
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-start"
+            >
+              <Grid item xs={6}>
+                <Card className={classes.smallCard}>
+                  <CardMedia
+                    className={classes.Content}
+                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                  />
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card className={classes.smallCard}>
+                  <CardMedia
+                    className={classes.Content}
+                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                  />
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card className={classes.smallCard}>
+                  <CardMedia
+                    className={classes.Content}
+                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    //이런식으로 하면 될 듯하다
+                  />
+                </Card>
+              </Grid>
+              <Grid item xs={6}>
+                <Card className={classes.smallCard}>
+                  <CardMedia
+                    className={classes.Content}
+                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                  />
+                </Card>
+              </Grid>
+            </Grid>
+          </Card>
         </TableCell>
         <TableCell style={{ width: 125 }}>
           <TextField
@@ -125,7 +177,80 @@ function Row(props) {
             square={false}
             className={classes.ingameItems}
           >
-            인게임 아이템
+            <Card className={classes.ingameItems}>
+              <Grid
+                container
+                spacing={0}
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+              >
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.smallCard}>
+                    <CardMedia
+                      className={classes.Content}
+                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    />
+                  </Card>
+                </Grid>
+              </Grid>
+            </Card>
           </Paper>
         </TableCell>
         <TableCell style={{ width: 125 }}>
@@ -230,7 +355,7 @@ export default function MatchHistory({ summonerName }) {
       console.log("props didn't come yet");
     } else {
       console.log("im in matchhistory");
-      console.log(matchInfo[0].info.gameMode);
+      console.log(matchInfo);
     }
   }, [matchInfo]);
 
