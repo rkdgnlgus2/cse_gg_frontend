@@ -316,18 +316,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
-  createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
-  createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
-  createData("Frozen yoghurt1", 159, 6.0, 24, 4.0, 3.99),
-  createData("Ice cream sandwich2", 237, 9.0, 37, 4.3, 4.99),
-  createData("<Eclai3></Eclai3>r", 262, 16.0, 24, 6.0, 3.79),
-  createData("Cupcake4", 305, 3.7, 67, 4.3, 2.5),
-  createData("Gingerbread5", 356, 16.0, 49, 3.9, 1.5),
-];
+let rows = [];
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
@@ -338,6 +327,7 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
+      rows = rows.concat(rows, matchInfo);
       return;
     } catch {
       console.log("matchhistory error");
@@ -356,6 +346,7 @@ export default function MatchHistory({ summonerName }) {
     } else {
       console.log("im in matchhistory");
       console.log(matchInfo);
+      console.log("rows:" + rows);
     }
   }, [matchInfo]);
 
