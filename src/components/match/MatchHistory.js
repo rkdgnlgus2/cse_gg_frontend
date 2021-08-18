@@ -345,7 +345,7 @@ export default function MatchHistory({ summonerName }) {
       console.log("props didn't come yet");
     } else {
       console.log("im in matchhistory");
-      console.log("rows:" + rows);
+      console.log(rows);
     }
   }, [matchInfo]);
 
