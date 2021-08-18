@@ -322,9 +322,11 @@ export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
 
   function createMainData(matches) {
-    console.log("matches got :" + matches);
+    console.log("matches got :");
+    console.log(matches);
     matches.map((match) => {
-      console.log("current match : " + match);
+      console.log("current match : ");
+      console.log(match);
       const user = match.info.participants.filter(
         (x) => x.summonerName === summonerName
       );
