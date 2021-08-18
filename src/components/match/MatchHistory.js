@@ -327,7 +327,7 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = rows.concat(rows, matchInfo);
+      rows = rows.concat(rows, matchInfo.data);
       return;
     } catch {
       console.log("matchhistory error");
@@ -345,7 +345,8 @@ export default function MatchHistory({ summonerName }) {
       console.log("props didn't come yet");
     } else {
       console.log("im in matchhistory");
-      console.log(rows);
+      console.log(matchInfo);
+      console.log("rows:" + rows);
     }
   }, [matchInfo]);
 
