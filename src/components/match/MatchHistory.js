@@ -56,7 +56,7 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein, price) {
+/*function createData(name, calories, fat, carbs, protein, price) {
   return {
     name,
     calories,
@@ -69,7 +69,7 @@ function createData(name, calories, fat, carbs, protein, price) {
       { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
     ],
   };
-}
+}*/
 
 function Row(props) {
   const { row } = props;
@@ -321,13 +321,24 @@ let rows = [];
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
 
+  function createMainData(matches) {
+    matches.map((match) => {
+      const user = match.info.participants.filter(
+        (x) => x.summonerName === summonerName
+      );
+      const championName = user.championName;
+
+      return { championName };
+    });
+  }
+
   const getMatchInfo = async () => {
     try {
       const matchInfo = await axios.get(
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = rows.concat(rows, matchInfo.data);
+      rows = rows.concat(rows, createMainData(matchInfo.data));
       return;
     } catch {
       console.log("matchhistory error");
