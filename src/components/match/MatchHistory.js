@@ -321,7 +321,7 @@ let rows = [];
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
 
-  function createMainData(matches, summonerName) {
+  function createMainData(matches) {
     console.log("matches got :");
     console.log(matches);
     matches.map((match) => {
@@ -329,8 +329,8 @@ export default function MatchHistory({ summonerName }) {
       console.log(match);
       console.log("participants:");
       console.log(match.info.participants);
-      const user = match.info.participants.filter((x) => {
-        return x.summonerName === summonerName;
+      const user = match.info.participants.filter((element) => {
+        return element.summonerName === summonerName;
       });
       console.log("user gotten :");
       console.log(user);
@@ -346,7 +346,7 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = rows.concat(rows, createMainData(matchInfo.data, summonerName));
+      rows = rows.concat(rows, createMainData(matchInfo.data));
       return;
     } catch {
       console.log("matchhistory error");
