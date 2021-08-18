@@ -328,10 +328,10 @@ export default function MatchHistory({ summonerName }) {
       console.log("current match : ");
       console.log(match);
       console.log("participants:");
-      console.log(match.info.participants[0].summonerName);
-      const user = match.info.participants.filter(
-        (x) => x.summonerName === summonerName
-      );
+      console.log(match.info.participants);
+      const user = match.info.participants.filter((x) => {
+        return x.summonerName === summonerName;
+      });
       console.log("user gotten :");
       console.log(user);
       const championName = user.championName;
