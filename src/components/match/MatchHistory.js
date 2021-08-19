@@ -334,8 +334,8 @@ export default function MatchHistory({ summonerName }) {
           element.summonerName.toLowerCase() === summonerName.toLowerCase()
         );
       });
-      console.log("user gotten :");
-      console.log(user);
+      console.log("user champion gotten :");
+      console.log(user.championName);
       const championName = user.championName;
 
       return { championName };
