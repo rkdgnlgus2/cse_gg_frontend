@@ -293,10 +293,10 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rows = [];
-
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
+  const [matchesShown, setMatchesShown] = useState(null);
+  const [rows, setRows] = useState([]);
 
   function createMainData(matches) {
     let matchData = [];
@@ -322,7 +322,8 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = [...rows, createMainData(matchInfo.data)];
+      setRows([...rows, createMainData(matchInfo.data)]);
+      setMatchesShown(rows.map((row) => <matchBunch row={row} />));
       return;
     } catch {
       console.log("matchhistory error");
@@ -338,21 +339,16 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
-      rows = [];
     } else {
       console.log("im in matchhistory");
       console.log(rows);
     }
-  }, [matchInfo]);
+  }, [matchInfo, rows]);
 
   return (
     <TableContainer component={Paper}>
       <Table aria-label="match history">
-        <TableBody>
-          {rows.map((row) => (
-            <matchBunch row={row} />
-          ))}
-        </TableBody>
+        <TableBody>{matchesShown}</TableBody>
       </Table>
     </TableContainer>
   );
