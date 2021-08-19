@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import axios from "axios";
 
 import MatchHistory from "./MatchHistory";
 import SummonerIcon from "./SummonerIcon";
 import SummonerInfo from "./SummonerInfo";
-
-import * as summonerAPI from "../../lib/api/summoner";
 
 const drawerWidth = 240;
 

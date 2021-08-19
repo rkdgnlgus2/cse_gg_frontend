@@ -71,11 +71,6 @@ const useRowStyles = makeStyles({
   };
 }*/
 
-function matchBunch(props) {
-  const { row } = props;
-
-  return row.map((match) => <Row match={match} />);
-}
 function Row(props) {
   const { match } = props;
   const [open, setOpen] = useState(false);
@@ -305,6 +300,12 @@ function Row(props) {
   );
 }
 
+function matchBunch(props) {
+  const { row } = props;
+
+  return row.map((match) => <Row match={match} />);
+}
+
 Row.propTypes = {
   row: PropTypes.shape({
     calories: PropTypes.number.isRequired,
@@ -323,7 +324,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rows = [];
+let rows = [{ championName: "Ryze" }];
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
