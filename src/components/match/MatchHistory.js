@@ -339,7 +339,7 @@ export default function MatchHistory({ summonerName }) {
       console.log(user[0].championName);
       const championName = user[0].championName;
 
-      matchData = matchData.concat(matchData, [{ championName }]);
+      return (matchData = matchData.concat(matchData, [{ championName }]));
     });
     return matchData;
   }
