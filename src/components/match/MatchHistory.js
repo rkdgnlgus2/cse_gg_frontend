@@ -339,7 +339,7 @@ export default function MatchHistory({ summonerName }) {
       console.log(user[0].championName);
       const championName = user[0].championName;
 
-      return (matchData = matchData.concat(matchData, [{ championName }]));
+      return (matchData = [...matchData, [{ championName }]]);
     });
     return matchData;
   }
@@ -350,7 +350,7 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = rows.concat(rows, [createMainData(matchInfo.data)]);
+      rows = [...rows, createMainData(matchInfo.data)];
       return;
     } catch {
       console.log("matchhistory error");
