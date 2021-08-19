@@ -283,8 +283,14 @@ function Row(match) {
   );
 }
 
-const matchBunch = (row) => {
-  return row.map((match) => <Row match={match} />);
+const matchBox = (row) => {
+  return (
+    <React.Fragment>
+      {row.map((match) => (
+        <Row key={match.championName} match={match} />
+      ))}
+    </React.Fragment>
+  );
 };
 
 Row.propTypes = {
@@ -295,7 +301,7 @@ Row.propTypes = {
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
-  const [matchesShown, setMatchesShown] = useState(null);
+  const [matchesShown, setMatchesShown] = useState();
   const [rows, setRows] = useState([]);
 
   function createMainData(matches) {
@@ -323,7 +329,9 @@ export default function MatchHistory({ summonerName }) {
       );
       setMatchInfo(matchInfo.data);
       setRows([...rows, createMainData(matchInfo.data)]);
-      setMatchesShown(rows.map((row) => <matchBunch row={row} />));
+      setMatchesShown(
+        rows.map((row) => <matchBox key={row.index} row={row} />)
+      );
       return;
     } catch {
       console.log("matchhistory error");
