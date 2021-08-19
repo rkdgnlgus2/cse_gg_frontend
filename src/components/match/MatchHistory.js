@@ -335,8 +335,8 @@ export default function MatchHistory({ summonerName }) {
         );
       });
       console.log("user champion gotten :");
-      console.log(user.championName);
-      const championName = user.championName;
+      console.log(user[0].championName);
+      const championName = user[0].championName;
 
       return { championName };
     });
