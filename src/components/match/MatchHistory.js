@@ -76,6 +76,8 @@ function Row(props) {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
+  const championURL = `"http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png"`;
+
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -100,10 +102,7 @@ function Row(props) {
         </TableCell>
         <TableCell style={{ width: 50 }}>
           <Card className={classes.bigCard}>
-            <CardMedia
-              className={classes.Content}
-              image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Aatrox.png"
-            />
+            <CardMedia className={classes.Content} image={championURL} />
           </Card>
         </TableCell>
         <TableCell style={{ width: 100 }}>
@@ -323,20 +322,15 @@ export default function MatchHistory({ summonerName }) {
 
   function createMainData(matches) {
     let matchData = [];
-    /*console.log("matches got :");
-    console.log(matches);*/
+    console.log("matches got :");
+    console.log(matches);
     matches.map((match) => {
-      /*console.log("current match : ");
-      console.log(match);
-      console.log("participants:");
-      console.log(match.info.participants);*/
       const user = match.info.participants.filter((element) => {
         return (
           element.summonerName.toLowerCase() === summonerName.toLowerCase()
         );
       });
-      console.log("user champion gotten :");
-      console.log(user[0].championName);
+
       const championName = user[0].championName;
 
       return (matchData = [...matchData, { championName }]);
@@ -377,7 +371,7 @@ export default function MatchHistory({ summonerName }) {
       <Table aria-label="match history">
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row row={row} />
           ))}
         </TableBody>
       </Table>
