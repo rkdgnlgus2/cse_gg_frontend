@@ -55,22 +55,6 @@ const useRowStyles = makeStyles({
     width: 200,
   },
 });
-
-/*function createData(name, calories, fat, carbs, protein, price) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      { date: "2020-01-05", customerId: "11091700", amount: 3 },
-      { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
-    ],
-  };
-}*/
-
 function Row(props) {
   const { match } = props;
   const [open, setOpen] = useState(false);
@@ -300,13 +284,12 @@ function Row(props) {
   );
 }
 
-function matchBunch(props) {
+const matchBunch = (props) => {
   const { row } = props;
-
   return row.map((match) => <Row match={match} />);
-}
+};
 
-Row.propTypes = {
+/*Row.propTypes = {
   row: PropTypes.shape({
     calories: PropTypes.number.isRequired,
     carbs: PropTypes.number.isRequired,
@@ -322,7 +305,7 @@ Row.propTypes = {
     price: PropTypes.number.isRequired,
     protein: PropTypes.number.isRequired,
   }).isRequired,
-};
+};*/
 
 let rows = [{ championName: "Ryze" }];
 
