@@ -285,7 +285,7 @@ function Row(row) {
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
-  const [matchesShown, setMatchesShown] = useState();
+  const [matchesShown, setMatchesShown] = useState(<div></div>);
   const [rows, setRows] = useState([]);
 
   function createMainData(matches) {
@@ -314,7 +314,9 @@ export default function MatchHistory({ summonerName }) {
       setMatchInfo(matchInfo.data);
       setRows([...rows, createMainData(matchInfo.data)]);
       setMatchesShown(
-        rows.map((matchBox) => matchBox.map((row) => <Row row={row} />))
+        <div>
+          {rows.map((matchBox) => matchBox.map((row) => <Row row={row} />))}
+        </div>
       );
       return;
     } catch {
