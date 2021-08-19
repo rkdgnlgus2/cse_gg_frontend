@@ -55,8 +55,7 @@ const useRowStyles = makeStyles({
     width: 200,
   },
 });
-function Row(props) {
-  const { match } = props;
+function Row(match) {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
@@ -284,8 +283,7 @@ function Row(props) {
   );
 }
 
-const matchBunch = (props) => {
-  const { row } = props;
+const matchBunch = (row) => {
   return row.map((match) => <Row match={match} />);
 };
 
@@ -295,7 +293,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rows = [[{ championName: "Ryze" }, { championName: "Ezreal" }]];
+let rows = [];
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
@@ -340,6 +338,7 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
+      rows = [];
     } else {
       console.log("im in matchhistory");
       console.log(rows);
