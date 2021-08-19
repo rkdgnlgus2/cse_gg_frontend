@@ -55,14 +55,14 @@ const useRowStyles = makeStyles({
     width: 200,
   },
 });
-function Row(match) {
+function Row(row) {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
-  const championURL = `"http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${match.championName}.png"`;
+  const championURL = `"http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png"`;
 
-  console.log("current match:");
-  console.log(match);
+  console.log("current matches:");
+  console.log(row);
 
   return (
     <React.Fragment>
@@ -283,22 +283,6 @@ function Row(match) {
   );
 }
 
-const matchBox = (row) => {
-  return (
-    <React.Fragment>
-      {row.map((match) => (
-        <Row key={match.championName} match={match} />
-      ))}
-    </React.Fragment>
-  );
-};
-
-Row.propTypes = {
-  match: PropTypes.shape({
-    championName: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
   const [matchesShown, setMatchesShown] = useState();
@@ -330,7 +314,7 @@ export default function MatchHistory({ summonerName }) {
       setMatchInfo(matchInfo.data);
       setRows([...rows, createMainData(matchInfo.data)]);
       setMatchesShown(
-        rows.map((row) => <matchBox key={row.index} row={row} />)
+        rows.map((matchBox) => matchBox.map((row) => <Row row={row} />))
       );
       return;
     } catch {
