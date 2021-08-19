@@ -373,7 +373,9 @@ export default function MatchHistory({ summonerName }) {
     <TableContainer component={Paper}>
       <Table aria-label="match history">
         <TableBody>
-          {rows.map((line) => line.map((row) => <Row row={row} />))}
+          {rows[0].map((row) => (
+            <Row row={row} />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
