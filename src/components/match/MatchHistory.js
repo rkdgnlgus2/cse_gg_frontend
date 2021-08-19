@@ -330,7 +330,9 @@ export default function MatchHistory({ summonerName }) {
       console.log("participants:");
       console.log(match.info.participants);
       const user = match.info.participants.filter((element) => {
-        return element.summonerName === { summonerName };
+        return (
+          element.summonerName.toLowerCase() === summonerName.toLowerCase()
+        );
       });
       console.log("user gotten :");
       console.log(user);
