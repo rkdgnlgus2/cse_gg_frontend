@@ -348,7 +348,7 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      rows = rows.concat(rows, createMainData(matchInfo.data));
+      rows = rows.concat(rows, [createMainData(matchInfo.data)]);
       return;
     } catch {
       console.log("matchhistory error");
