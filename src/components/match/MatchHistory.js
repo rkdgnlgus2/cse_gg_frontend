@@ -295,7 +295,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rows = [{ championName: "Ryze" }];
+let rows = [[{ championName: "Ryze" }, { championName: "Ezreal" }]];
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
