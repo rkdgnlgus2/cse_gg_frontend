@@ -78,6 +78,9 @@ function Row(props) {
 
   const championURL = `"http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png"`;
 
+  console.log("current row:");
+  console.log(row);
+
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
