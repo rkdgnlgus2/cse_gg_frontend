@@ -322,13 +322,14 @@ export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
 
   function createMainData(matches) {
-    console.log("matches got :");
-    console.log(matches);
+    let matchData = [];
+    /*console.log("matches got :");
+    console.log(matches);*/
     matches.map((match) => {
-      console.log("current match : ");
+      /*console.log("current match : ");
       console.log(match);
       console.log("participants:");
-      console.log(match.info.participants);
+      console.log(match.info.participants);*/
       const user = match.info.participants.filter((element) => {
         return (
           element.summonerName.toLowerCase() === summonerName.toLowerCase()
@@ -338,8 +339,9 @@ export default function MatchHistory({ summonerName }) {
       console.log(user[0].championName);
       const championName = user[0].championName;
 
-      return { championName };
+      matchData = matchData.concat(matchData, [{ championName }]);
     });
+    return matchData;
   }
 
   const getMatchInfo = async () => {
