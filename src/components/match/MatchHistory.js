@@ -318,7 +318,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-let rows = [];
+let rows = [{ championName: "Ezreal" }];
 
 export default function MatchHistory({ summonerName }) {
   const [matchInfo, setMatchInfo] = useState(null);
@@ -373,9 +373,7 @@ export default function MatchHistory({ summonerName }) {
     <TableContainer component={Paper}>
       <Table aria-label="match history">
         <TableBody>
-          {rows.map((row) => (
-            <Row row={row} />
-          ))}
+          {rows.map((line) => line.map((row) => <Row row={row} />))}
         </TableBody>
       </Table>
     </TableContainer>
