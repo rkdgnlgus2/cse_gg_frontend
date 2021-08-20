@@ -368,14 +368,6 @@ export default function MatchHistory({ summonerName }) {
       setRows(rows.concat(createMainData(matchInfo.data)));
       return;
     } catch {
-      setRows(rows.concat([{ championName: "Ryze" }]));
-      setMatchesShown(
-        <div>
-          {rows.map((row) => (
-            <Row row={row} />
-          ))}
-        </div>
-      );
       console.log("matchhistory Error, Offline Mode, setting default rows");
       console.log("current rows:");
       console.log(rows);
