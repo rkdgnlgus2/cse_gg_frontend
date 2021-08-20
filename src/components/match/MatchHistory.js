@@ -61,8 +61,8 @@ function Row(row) {
 
   const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
 
-  console.log("current matches:");
-  console.log(row);
+  console.log("current champion:");
+  console.log(row.championName);
 
   return (
     <React.Fragment>
