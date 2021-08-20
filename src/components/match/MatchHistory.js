@@ -59,7 +59,7 @@ function Row(row) {
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
-  const championURL = `"http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png"`;
+  const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
 
   console.log("current matches:");
   console.log(row);
@@ -312,15 +312,27 @@ export default function MatchHistory({ summonerName }) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       setMatchInfo(matchInfo.data);
-      setRows([...rows, createMainData(matchInfo.data)]);
+      setRows(rows.concat(createMainData(matchInfo.data)));
       setMatchesShown(
         <div>
-          {rows.map((matchBox) => matchBox.map((row) => <Row row={row} />))}
+          {rows.map((row) => (
+            <Row row={row} />
+          ))}
         </div>
       );
       return;
     } catch {
-      console.log("matchhistory error");
+      setRows(rows.concat([{ championName: "Ryze" }]));
+      setMatchesShown(
+        <div>
+          {rows.map((row) => (
+            <Row row={row} />
+          ))}
+        </div>
+      );
+      console.log("matchhistory Error, Offline Mode, setting default rows");
+      console.log("current rows:");
+      console.log(rows);
     }
   };
 
