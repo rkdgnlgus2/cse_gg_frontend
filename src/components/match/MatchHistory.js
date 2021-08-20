@@ -323,7 +323,7 @@ export default function MatchHistory({ summonerName }) {
       console.log("user got:");
       console.log(user);
 
-      const { gameCreation, gameDuration, gameMode } = match;
+      const { gameCreation, gameDuration, gameMode } = match.info;
 
       const {
         championName,
