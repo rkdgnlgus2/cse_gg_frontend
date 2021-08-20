@@ -84,7 +84,7 @@ function Row(props) {
       : `${Math.round(((row.kills + row.assists) * 100) / row.deaths) / 100}:1`;
 
   const durationMinute = Math.round(Math.round(row.gameDuration / 1000) / 60);
-  const durationSecond = Math.rount(row.gameDuration / 1000) % 60;
+  const durationSecond = Math.round(row.gameDuration / 1000) % 60;
   const isWin = row.win ? "승리" : "패배";
   const gameMode = () => {
     if (row.gameMode === "CLASSIC") {
