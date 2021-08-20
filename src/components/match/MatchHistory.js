@@ -364,8 +364,8 @@ export default function MatchHistory({ summonerName }) {
       const matchInfo = await axios.get(
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
-      setMatchInfo(matchInfo.data);
-      setRows(rows.concat(createMainData(matchInfo.data)));
+      await setMatchInfo(matchInfo.data);
+      await setRows(rows.concat(createMainData(matchInfo.data)));
       return;
     } catch {
       setMatchesShown(
@@ -388,7 +388,7 @@ export default function MatchHistory({ summonerName }) {
   }, []);
 
   useEffect(() => {
-    if (!matchInfo || rows.length === 0) {
+    if (!matchInfo) {
       console.log("props didn't come yet");
     } else {
       setMatchesShown(
