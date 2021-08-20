@@ -322,7 +322,19 @@ export default function MatchHistory({ summonerName }) {
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user[0].summoner2Id}`;
       })[0][0];
-      const primaryRoute = Runes.filter((x) => {
+      const primaryRoute = Object.entries(Runes).filter((x) => {
+        return (
+          x[1].slots[0].runes[0].id ===
+          user[0].perks.styles[0].selections[0].perk
+        );
+      });
+      const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
+        return x.id === user[0].perks.styles[0].selections[0].perk;
+      });
+      const subStyle = Object.entries(Runes).filter((x) => {
+        return x[1].id === user[0].perks.styles[1].style;
+      });
+      /*const primaryRoute = Runes.filter((x) => {
         return (
           x.slots[0].runes[0].id === user[0].perks.styles[0].selections[0].perk
         );
@@ -332,7 +344,7 @@ export default function MatchHistory({ summonerName }) {
       })[0].icon;
       const subStyle = Runes.filter((x) => {
         return x.id === user[0].perks.styles[1].style;
-      })[0].icon;
+      })[0].icon;*/
 
       console.log("main data result:");
       console.log({
@@ -383,6 +395,7 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
+      console.log(Object.entries(Runes));
     } else {
       setMatchesShown(
         <div>
