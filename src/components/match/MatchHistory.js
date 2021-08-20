@@ -20,14 +20,10 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
-import * as timeDelta from "time-delta";
-
 import * as matchAPI from "../../lib/api/match";
 
 import SummonerSpell from "./json/SummonerSpell.json";
 import Runes from "./json/Runes.json";
-
-const timelapseCalculator = timeDelta.create();
 
 const useRowStyles = makeStyles({
   root: {
@@ -87,7 +83,6 @@ function Row(props) {
       ? "PERFECT"
       : `${Math.round(((row.kills + row.assists) * 100) / row.deaths) / 100}:1`;
 
-  const timelapse = timelapseCalculator.format(row.gameCreation, Date.now());
   const durationMinute = Math.round(Math.round(row.gameDuration / 1000) / 60);
   const durationSecond = Math.rount(row.gameDuration / 1000) % 60;
   const isWin = row.win ? "승리" : "패배";
@@ -121,7 +116,7 @@ function Row(props) {
             InputProps={{ disableUnderline: true }}
             id="mode-and-time"
             multiline
-            value={`${gameMode()}\n${timelapse}\n${isWin}\n${durationMinute}분 ${durationSecond}초`}
+            value={`${gameMode()}\n 며칠 전\n${isWin}\n${durationMinute}분 ${durationSecond}초`}
             maxRows={4}
           />
         </TableCell>
