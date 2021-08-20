@@ -327,10 +327,11 @@ export default function MatchHistory({ summonerName }) {
       console.log("user got:");
       console.log(user);
 
-      const matchTotalKills = match.info.participants.reduce((acc, cur) => {
-        return acc + cur;
-      }, 0);
-
+      let matchkillreducer = 0;
+      for (let i = 0; i < 10; i++) {
+        matchkillreducer += match.info.participants[i].kills;
+      }
+      const matchTotalKills = matchkillreducer;
       const { gameCreation, gameDuration, gameMode } = match.info;
 
       const {
