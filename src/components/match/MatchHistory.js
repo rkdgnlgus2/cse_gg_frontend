@@ -173,7 +173,11 @@ function Row(props) {
             InputProps={{ disableUnderline: true }}
             id="standard-multiline-flexible"
             multiline
-            value={"레벨 18\n19(0.8)cs\n킬관여 53%"}
+            value={`레벨 ${row.champLevel}\n${row.totalMinionsKilled}(${
+              Math.round((row.totalMinionsKilled * 10) / durationMinute) / 10
+            })cs\n킬관여 ${Math.round(
+              (row.kills * 100) / row.matchTotalKills
+            )}%`}
             maxRows={3}
           />
         </TableCell>
@@ -323,6 +327,10 @@ export default function MatchHistory({ summonerName }) {
       console.log("user got:");
       console.log(user);
 
+      const matchTotalKills = match.participants.reduce((acc, cur) => {
+        return acc + cur;
+      }, 0);
+
       const { gameCreation, gameDuration, gameMode } = match.info;
 
       const {
@@ -373,15 +381,6 @@ export default function MatchHistory({ summonerName }) {
         return x.id === user.perks.styles[1].style;
       })[0].icon;*/
 
-      console.log("main data result:");
-      console.log({
-        championName,
-        items,
-        summoner1id,
-        summoner2id,
-        subStyle,
-      });
-
       return (matchData = [
         ...matchData,
         {
@@ -399,6 +398,7 @@ export default function MatchHistory({ summonerName }) {
           gameDuration,
           gameMode,
           win,
+          matchTotalKills,
         },
       ]);
     });
