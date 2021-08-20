@@ -22,7 +22,8 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import * as matchAPI from "../../lib/api/match";
 
-import SummonerSpell from "./SummonerSpell.json";
+import SummonerSpell from "./json/SummonerSpell.json";
+import Runes from "./json/Runes.json";
 
 const useRowStyles = makeStyles({
   root: {
@@ -72,16 +73,10 @@ function Row(props) {
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[5]}.png`,
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[6]}.png`,
   ];
-  const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${
-    Object.entries(SummonerSpell.data).filter((x) => {
-      return x[1].key === `${row.summoner1id}`;
-    })[0][0]
-  }.png`;
-  const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${
-    Object.entries(SummonerSpell.data).filter((x) => {
-      return x[1].key === `${row.summoner2id}`;
-    })[0][0]
-  }.png`;
+  const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
+  const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
+  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
 
   console.log("current champion:");
   console.log(row.championName);
@@ -131,7 +126,7 @@ function Row(props) {
                 <Card className={classes.smallCard}>
                   <CardMedia
                     className={classes.Content}
-                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                    image={primaryStyleURL}
                   />
                 </Card>
               </Grid>
@@ -142,10 +137,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia
-                    className={classes.Content}
-                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
-                  />
+                  <CardMedia className={classes.Content} image={subStyleURL} />
                 </Card>
               </Grid>
             </Grid>
@@ -213,7 +205,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image={itemURLs[3]}
+                      image={itemURLs[6]}
                     />
                   </Card>
                 </Grid>
@@ -237,18 +229,18 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image={itemURLs[6]}
+                      image={itemURLs[3]}
                     />
                   </Card>
                 </Grid>
-                <Grid item xs={3}>
+                {/*<Grid item xs={3}>
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
                       image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
                     />
                   </Card>
-                </Grid>
+                </Grid>*/}
               </Grid>
             </Card>
           </Paper>
@@ -324,12 +316,36 @@ export default function MatchHistory({ summonerName }) {
         user[0].item5,
         user[0].item6,
       ];
-      const summoner1id = user[0].summoner1Id;
-      const summoner2id = user[0].summoner2Id;
+
+      const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
+        return x[1].key === `${user[0].summoner1Id}`;
+      })[0][0];
+      const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
+        return x[1].key === `${user[0].summoner2Id}`;
+      })[0][0];
+
+      const primaryRoute = Runes.filter((x) => {
+        return (
+          x.slots[0].runes[0].id === user[0].perks.styles[0].selections[0].perk
+        );
+      });
+      const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
+        return x.id === user[0].perks.styles[0].selections[0].perk;
+      })[0].icon;
+      const subStyle = Runes.filter((x) => {
+        return x.id === user[0].perks.styles[1].style;
+      })[0].icon;
 
       return (matchData = [
         ...matchData,
-        { championName, items, summoner1id, summoner2id },
+        {
+          championName,
+          items,
+          summoner1id,
+          summoner2id,
+          primaryStyle,
+          subStyle,
+        },
       ]);
     });
     return matchData;
@@ -368,13 +384,23 @@ export default function MatchHistory({ summonerName }) {
     if (!matchInfo) {
       console.log("props didn't come yet");
       console.log("this is JSON:");
-      console.log(SummonerSpell);
-      console.log(Object.entries(SummonerSpell.data));
+      console.log(Runes);
       console.log(
+        Runes.filter((x) => {
+          return x.id === 8100;
+        })[0].icon
+      );
+      console.log(
+        Runes.filter((x) => {
+          return x.slots[0].runes[0].id === 8112;
+        })
+      );
+      //console.log(Object.entries(Runes.data));
+      /*console.log(
         Object.entries(SummonerSpell.data).filter((x) => {
           return x[1].key === "7";
         })[0][0]
-      );
+      );*/
     } else {
       setMatchesShown(
         <div>
