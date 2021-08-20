@@ -329,7 +329,8 @@ export default function MatchHistory({ summonerName }) {
 
       let matchkillreducer = 0;
       for (let i = 0; i < 10; i++) {
-        matchkillreducer += match.info.participants[i].kills;
+        if (user.teamId === match.info.participants[i].teamId)
+          matchkillreducer += match.info.participants[i].kills;
       }
       const matchTotalKills = matchkillreducer;
       const { gameCreation, gameDuration, gameMode } = match.info;
