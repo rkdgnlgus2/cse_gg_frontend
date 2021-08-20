@@ -20,10 +20,16 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
+import * as timeDelta from "time-delta";
+import koLocale from "time-delta/locale/ko";
+
 import * as matchAPI from "../../lib/api/match";
 
 import SummonerSpell from "./json/SummonerSpell.json";
 import Runes from "./json/Runes.json";
+
+timeDelta.addLocale(koLocale);
+const timelapseCalculator = timeDelta.create({ locale: "ko" });
 
 const useRowStyles = makeStyles({
   root: {
@@ -83,10 +89,26 @@ function Row(props) {
       ? "PERFECT"
       : `${Math.round(((row.kills + row.assists) * 100) / row.deaths) / 100}:1`;
 
+  const timelapse = timelapseCalculator.format(row.gameCreation, Date.now());
+  const durationMinute = Math.round(Math.round(row.gameDuration / 1000) / 60);
+  const durationSecond = Math.rount(row.gameDuration / 1000) % 60;
+  const isWin = row.win ? "승리" : "패배";
+  const gameMode = () => {
+    if (row.gameMode === "CLASSIC") {
+      return "일반 게임";
+    } else if (row.gameMode === "ARAM") {
+      return "무작위 총력전";
+    } else if (row.gameMode === "ONEFORALL") {
+      return "단일 챔피언 모드";
+    }
+  };
+
+  //ARAM CLASSIC ONEFORALL
+
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        <TableCell style={{ width: 100 }}>
+        <TableCell style={{ width: 150 }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -95,22 +117,22 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell style={{ width: 125 }}>
+        <TableCell style={{ width: 175 }}>
           <TextField
             inputProps={{ style: { fontSize: 10, textAlign: "center" } }}
             InputProps={{ disableUnderline: true }}
             id="mode-and-time"
             multiline
-            value={"무작위 총력전\n5일 전\n패배\n33분 25초"}
+            value={`${gameMode()}\n${timelapse}\n${isWin}\n${durationMinute}분 ${durationSecond}초`}
             maxRows={4}
           />
         </TableCell>
-        <TableCell style={{ width: 50 }}>
+        <TableCell style={{ width: 100 }}>
           <Card className={classes.bigCard}>
             <CardMedia className={classes.Content} image={championURL} />
           </Card>
         </TableCell>
-        <TableCell style={{ width: 100 }}>
+        <TableCell style={{ width: 150 }}>
           <Card className={classes.bigCard}>
             <Grid
               container
@@ -142,7 +164,7 @@ function Row(props) {
             </Grid>
           </Card>
         </TableCell>
-        <TableCell style={{ width: 125 }}>
+        <TableCell style={{ width: 175 }}>
           <TextField
             inputProps={{ style: { fontSize: 15, textAlign: "center" } }}
             InputProps={{ disableUnderline: true }}
@@ -152,7 +174,7 @@ function Row(props) {
             maxRows={2}
           />
         </TableCell>
-        <TableCell style={{ width: 125 }}>
+        <TableCell style={{ width: 175 }}>
           <TextField
             inputProps={{ style: { fontSize: 12, textAlign: "center" } }}
             InputProps={{ disableUnderline: true }}
@@ -162,7 +184,7 @@ function Row(props) {
             maxRows={3}
           />
         </TableCell>
-        <TableCell style={{ width: 150 }}>
+        <TableCell style={{ width: 200 }}>
           <Paper
             variant="outlined"
             square={false}

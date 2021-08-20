@@ -68,6 +68,7 @@
     "semver": "7.3.2",
     "style-loader": "1.3.0",
     "terser-webpack-plugin": "4.2.3",
+    "time-delta": "^1.0.0",
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
     "web-vitals": "^1.0.1",
@@ -159,5 +160,5 @@
       "react-app"
     ]
   },
-  "proxy":"http://3.37.201.192:8080/"
+  "proxy": "http://3.37.201.192:8080/"
 }

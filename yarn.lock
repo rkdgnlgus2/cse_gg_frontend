@@ -6299,6 +6299,11 @@ is-negative-zero@^2.0.1:
   resolved "https://registry.yarnpkg.com/is-negative-zero/-/is-negative-zero-2.0.1.tgz#3de746c18dda2319241a53675908d8f766f11c24"
   integrity sha512-2z6JzQvZRa9A2Y7xC6dQQm4FSTSTNWjKIYYTt4246eMTJmIo0Q+ZyOsU66X8lxK1AbB92dFeglPLrhwpeRKO6w==
 
+is-node@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/is-node/-/is-node-1.0.2.tgz#d7d002745ef7debbb7477e988956ab0a4fccb653"
+  integrity sha1-19ACdF733ru3R36YiVarCk/MtlM=
+
 is-number@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
@@ -7920,6 +7925,11 @@ num2fraction@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
   integrity sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
+
+numerous@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/numerous/-/numerous-1.0.3.tgz#f62aeef2e7853deff09d1af1e147b096194e46fe"
+  integrity sha512-jN2WTpfdMmR1d5ClpYguln+XAvgW7B0te6wlsyaZhyev7E2CyOmvXq5LTIV/p9mt9WrPW9Xw1g5+28iZh8BhFQ==
 
 nwsapi@^2.2.0:
   version "2.2.0"
@@ -10958,6 +10968,14 @@ thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
+
+time-delta@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/time-delta/-/time-delta-1.0.0.tgz#9487f8c45a0697f1c3dc7884106867055e2c9f4f"
+  integrity sha512-9Njh4IxFsKileZFMTQ01ci1Mt7HlfkkgGSNSsvo2psvSqUedqSDdxS18gI7C9kSjeJ8FSkD4ekA2w5bOZCnu7g==
+  dependencies:
+    is-node "^1.0.2"
+    numerous "^1.0.3"
 
 timers-browserify@^2.0.4:
   version "2.0.12"
