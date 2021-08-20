@@ -66,7 +66,7 @@ function Row(props) {
   const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
   const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
   const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
-  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  //const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
   const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
   const itemURLs = [
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[0]}.png`,
@@ -121,10 +121,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia
-                    className={classes.Content}
-                    image={primaryStyleURL}
-                  />
+                  <CardMedia className={classes.Content} image={subStyleURL} />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -322,15 +319,15 @@ export default function MatchHistory({ summonerName }) {
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user[0].summoner2Id}`;
       })[0][0];
-      const primaryRoute = Object.entries(Runes).filter((x) => {
+      /*const primaryRoute = Object.entries(Runes).filter((x) => {
         return (
           x[1].slots[0].runes[0].id ===
           user[0].perks.styles[0].selections[0].perk
         );
-      })[0][1];
+      })[0];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
         return x.id === user[0].perks.styles[0].selections[0].perk;
-      });
+      });*/
       const subStyle = Object.entries(Runes).filter((x) => {
         return x[1].id === user[0].perks.styles[1].style;
       });
@@ -352,7 +349,6 @@ export default function MatchHistory({ summonerName }) {
         items,
         summoner1id,
         summoner2id,
-        primaryStyle,
         subStyle,
       });
 
@@ -363,7 +359,6 @@ export default function MatchHistory({ summonerName }) {
           items,
           summoner1id,
           summoner2id,
-          primaryStyle,
           subStyle,
         },
       ]);
