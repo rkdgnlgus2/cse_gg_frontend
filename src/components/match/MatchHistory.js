@@ -346,6 +346,13 @@ export default function MatchHistory({ summonerName }) {
     if (!matchInfo) {
       console.log("props didn't come yet");
     } else {
+      setMatchesShown(
+        <div>
+          {rows.map((row) => (
+            <Row row={row} />
+          ))}
+        </div>
+      );
       console.log("im in matchhistory");
       console.log(rows);
     }
