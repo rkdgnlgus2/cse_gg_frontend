@@ -312,8 +312,8 @@ export default function MatchHistory({ summonerName }) {
       const matchInfo = await axios.get(
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
-      setMatchInfo(matchInfo.data);
-      setRows(rows.concat(createMainData(matchInfo.data)));
+      await setMatchInfo(matchInfo.data);
+      await setRows(rows.concat(createMainData(matchInfo.data)));
       setMatchesShown(
         <div>
           {rows.map((row) => (
@@ -347,13 +347,6 @@ export default function MatchHistory({ summonerName }) {
     if (!matchInfo) {
       console.log("props didn't come yet");
     } else {
-      setMatchesShown(
-        <div>
-          {rows.map((row) => (
-            <Row row={row} />
-          ))}
-        </div>
-      );
       console.log("im in matchhistory");
       console.log(rows);
     }
