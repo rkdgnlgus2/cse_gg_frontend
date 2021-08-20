@@ -75,11 +75,8 @@ function Row(props) {
   ];
   const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
   const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
-  //const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
-  //const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
-
-  console.log("current champion:");
-  console.log(row.championName);
+  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
 
   return (
     <React.Fragment>
@@ -124,7 +121,10 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia className={classes.Content} image={summoner1URL} />
+                  <CardMedia
+                    className={classes.Content}
+                    image={primaryStyleURL}
+                  />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -134,7 +134,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia className={classes.Content} image={summoner1URL} />
+                  <CardMedia className={classes.Content} image={subStyleURL} />
                 </Card>
               </Grid>
             </Grid>
