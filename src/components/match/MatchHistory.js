@@ -304,7 +304,7 @@ export default function MatchHistory({ summonerName }) {
       });
 
       console.log("user got:");
-      console.log(user);
+      console.log(user[0]);
 
       const championName = user[0].championName;
       const items = [
@@ -367,15 +367,8 @@ export default function MatchHistory({ summonerName }) {
       await setMatchInfo(matchInfo.data);
       await setRows(rows.concat(createMainData(matchInfo.data)));
       return;
-    } catch {
-      setMatchesShown(
-        <div>
-          {rows.map((row) => (
-            <Row row={row} />
-          ))}
-        </div>
-      );
-      console.log("matchhistory Error, Offline Mode, setting default rows");
+    } catch (error) {
+      console.log(error);
       console.log("current rows:");
       console.log(rows);
     }
