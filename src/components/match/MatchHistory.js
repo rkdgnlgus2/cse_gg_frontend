@@ -64,6 +64,10 @@ function Row(props) {
   const classes = useRowStyles();
 
   const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
+  const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
+  const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
+  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
   const itemURLs = [
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[0]}.png`,
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[1]}.png`,
@@ -73,10 +77,6 @@ function Row(props) {
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[5]}.png`,
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[6]}.png`,
   ];
-  const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
-  const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
-  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
-  const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
 
   return (
     <React.Fragment>
