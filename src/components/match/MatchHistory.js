@@ -176,7 +176,7 @@ function Row(props) {
             value={`레벨 ${row.champLevel}\n${row.totalMinionsKilled}(${
               Math.round((row.totalMinionsKilled * 10) / durationMinute) / 10
             })cs\n킬관여 ${Math.round(
-              (row.kills * 100) / row.matchTotalKills
+              ((row.kills + row.assists) * 100) / row.matchTotalKills
             )}%`}
             maxRows={3}
           />
