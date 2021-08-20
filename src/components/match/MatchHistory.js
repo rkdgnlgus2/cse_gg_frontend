@@ -312,9 +312,9 @@ export default function MatchHistory({ summonerName }) {
       const matchInfo = await axios.get(
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
-      await setMatchInfo(matchInfo.data);
-      await setRows(rows.concat(createMainData(matchInfo.data)));
-      setMatchesShown(
+      setMatchInfo(matchInfo.data);
+      setRows(rows.concat(createMainData(matchInfo.data)));
+      await setMatchesShown(
         <div>
           {rows.map((row) => (
             <Row row={row} />
