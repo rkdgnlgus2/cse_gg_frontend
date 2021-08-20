@@ -376,7 +376,7 @@ export default function MatchHistory({ summonerName }) {
   }, []);
 
   useEffect(() => {
-    if (!matchInfo) {
+    if (!matchInfo || rows.length === 0) {
       console.log("props didn't come yet");
     } else {
       setMatchesShown(
