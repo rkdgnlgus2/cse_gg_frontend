@@ -303,6 +303,9 @@ export default function MatchHistory({ summonerName }) {
         );
       });
 
+      console.log("user got:");
+      console.log(user);
+
       const championName = user[0].championName;
       const items = [
         user[0].item0,
