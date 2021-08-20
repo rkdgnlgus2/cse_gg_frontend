@@ -327,8 +327,8 @@ export default function MatchHistory({ summonerName }) {
           x[1].slots[0].runes[0].id ===
           user[0].perks.styles[0].selections[0].perk
         );
-      })[0];
-      const primaryStyle = primaryRoute[1].slots[0].runes.filter((x) => {
+      })[0][1];
+      const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
         return x.id === user[0].perks.styles[0].selections[0].perk;
       });
       const subStyle = Object.entries(Runes).filter((x) => {
