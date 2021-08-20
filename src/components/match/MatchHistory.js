@@ -75,8 +75,8 @@ function Row(props) {
   ];
   const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
   const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
-  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
-  const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
+  //const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  //const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
 
   console.log("current champion:");
   console.log(row.championName);
@@ -316,14 +316,12 @@ export default function MatchHistory({ summonerName }) {
         user.item5,
         user.item6,
       ];
-
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner1Id}`;
       })[0][0];
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
-
       const primaryRoute = Runes.filter((x) => {
         return (
           x.slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
