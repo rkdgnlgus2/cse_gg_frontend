@@ -21,15 +21,13 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import * as timeDelta from "time-delta";
-import koLocale from "time-delta/locale/ko";
 
 import * as matchAPI from "../../lib/api/match";
 
 import SummonerSpell from "./json/SummonerSpell.json";
 import Runes from "./json/Runes.json";
 
-timeDelta.addLocale(koLocale);
-const timelapseCalculator = timeDelta.create({ locale: "ko" });
+const timelapseCalculator = timeDelta.create();
 
 const useRowStyles = makeStyles({
   root: {
