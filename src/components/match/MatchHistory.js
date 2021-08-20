@@ -331,6 +331,16 @@ export default function MatchHistory({ summonerName }) {
         return x.id === user[0].perks.styles[1].style;
       })[0].icon;
 
+      console.log("main data result:");
+      console.log({
+        championName,
+        items,
+        summoner1id,
+        summoner2id,
+        primaryStyle,
+        subStyle,
+      });
+
       return (matchData = [
         ...matchData,
         {
