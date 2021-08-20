@@ -314,13 +314,6 @@ export default function MatchHistory({ summonerName }) {
       );
       setMatchInfo(matchInfo.data);
       setRows(rows.concat(createMainData(matchInfo.data)));
-      await setMatchesShown(
-        <div>
-          {rows.map((row) => (
-            <Row row={row} />
-          ))}
-        </div>
-      );
       return;
     } catch {
       setRows(rows.concat([{ championName: "Ryze" }]));
@@ -347,6 +340,13 @@ export default function MatchHistory({ summonerName }) {
     if (!matchInfo) {
       console.log("props didn't come yet");
     } else {
+      setMatchesShown(
+        <div>
+          {rows.map((row) => (
+            <Row row={row} />
+          ))}
+        </div>
+      );
       console.log("im in matchhistory");
       console.log(rows);
     }
