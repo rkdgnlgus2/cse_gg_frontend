@@ -330,7 +330,7 @@ export default function MatchHistory({ summonerName }) {
       });*/
       const subStyle = Object.entries(Runes).filter((x) => {
         return x[1].id === user[0].perks.styles[1].style;
-      });
+      })[0][1].icon;
       /*const primaryRoute = Runes.filter((x) => {
         return (
           x.slots[0].runes[0].id === user[0].perks.styles[0].selections[0].perk
