@@ -78,6 +78,11 @@ function Row(props) {
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[6]}.png`,
   ];
 
+  const kda =
+    row.deaths === 0
+      ? "PERFECT"
+      : `${Math.round(((row.kills + row.assists) * 100) / row.deaths) / 100}:1`;
+
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -143,7 +148,7 @@ function Row(props) {
             InputProps={{ disableUnderline: true }}
             id="standard-multiline-flexible"
             multiline
-            value={"10/0/10\n평점 9999"}
+            value={`${row.kills}/${row.deaths}/${row.assists}\n 평점 ${kda}`}
             maxRows={2}
           />
         </TableCell>
@@ -239,11 +244,11 @@ function Row(props) {
             </Card>
           </Paper>
         </TableCell>
-        <TableCell style={{ width: 125 }}>
+        {/*<TableCell style={{ width: 125 }}>
           <Paper variant="outlined" square={false} className={classes.players}>
             함께한 플레이어들
           </Paper>
-        </TableCell>
+              </TableCell>*/}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -298,49 +303,59 @@ export default function MatchHistory({ summonerName }) {
         return (
           element.summonerName.toLowerCase() === summonerName.toLowerCase()
         );
-      });
+      })[0];
 
       console.log("user got:");
-      console.log(user[0]);
+      console.log(user);
 
-      const championName = user[0].championName;
+      const { gameCreation, gameDuration, gameMode } = match;
+
+      const {
+        championName,
+        kills,
+        deaths,
+        assists,
+        champLevel,
+        totalMinionsKilled,
+        win,
+      } = user;
       const items = [
-        user[0].item0,
-        user[0].item1,
-        user[0].item2,
-        user[0].item3,
-        user[0].item4,
-        user[0].item5,
-        user[0].item6,
+        user.item0,
+        user.item1,
+        user.item2,
+        user.item3,
+        user.item4,
+        user.item5,
+        user.item6,
       ];
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
-        return x[1].key === `${user[0].summoner1Id}`;
+        return x[1].key === `${user.summoner1Id}`;
       })[0][0];
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
-        return x[1].key === `${user[0].summoner2Id}`;
+        return x[1].key === `${user.summoner2Id}`;
       })[0][0];
       /*const primaryRoute = Object.entries(Runes).filter((x) => {
         return (
           x[1].slots[0].runes[0].id ===
-          user[0].perks.styles[0].selections[0].perk
+          user.perks.styles[0].selections[0].perk
         );
       })[0];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user[0].perks.styles[0].selections[0].perk;
+        return x.id === user.perks.styles[0].selections[0].perk;
       });*/
       const subStyle = Object.entries(Runes).filter((x) => {
-        return x[1].id === user[0].perks.styles[1].style;
+        return x[1].id === user.perks.styles[1].style;
       })[0][1].icon;
       /*const primaryRoute = Runes.filter((x) => {
         return (
-          x.slots[0].runes[0].id === user[0].perks.styles[0].selections[0].perk
+          x.slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
         );
       })[0];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user[0].perks.styles[0].selections[0].perk;
+        return x.id === user.perks.styles[0].selections[0].perk;
       })[0].icon;
       const subStyle = Runes.filter((x) => {
-        return x.id === user[0].perks.styles[1].style;
+        return x.id === user.perks.styles[1].style;
       })[0].icon;*/
 
       console.log("main data result:");
@@ -360,6 +375,15 @@ export default function MatchHistory({ summonerName }) {
           summoner1id,
           summoner2id,
           subStyle,
+          kills,
+          deaths,
+          assists,
+          champLevel,
+          totalMinionsKilled,
+          gameCreation,
+          gameDuration,
+          gameMode,
+          win,
         },
       ]);
     });
