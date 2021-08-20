@@ -22,6 +22,8 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import * as matchAPI from "../../lib/api/match";
 
+import SummonerSpell from "./SummonerSpell.json";
+
 const useRowStyles = makeStyles({
   root: {
     "& > *": {
@@ -70,6 +72,16 @@ function Row(props) {
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[5]}.png`,
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[6]}.png`,
   ];
+  const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${
+    Object.entries(SummonerSpell.data).filter((x) => {
+      return x[1].key === `${row.summoner1id}`;
+    })[0][0]
+  }.png`;
+  const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${
+    Object.entries(SummonerSpell.data).filter((x) => {
+      return x[1].key === `${row.summoner2id}`;
+    })[0][0]
+  }.png`;
 
   console.log("current champion:");
   console.log(row.championName);
@@ -112,10 +124,7 @@ function Row(props) {
             >
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia
-                    className={classes.Content}
-                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
-                  />
+                  <CardMedia className={classes.Content} image={summoner1URL} />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -128,11 +137,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia
-                    className={classes.Content}
-                    image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
-                    //이런식으로 하면 될 듯하다
-                  />
+                  <CardMedia className={classes.Content} image={summoner2URL} />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -319,8 +324,13 @@ export default function MatchHistory({ summonerName }) {
         user[0].item5,
         user[0].item6,
       ];
+      const summoner1id = user[0].summoner1Id;
+      const summoner2id = user[0].summoner2Id;
 
-      return (matchData = [...matchData, { championName, items }]);
+      return (matchData = [
+        ...matchData,
+        { championName, items, summoner1id, summoner2id },
+      ]);
     });
     return matchData;
   }
@@ -357,6 +367,14 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
+      console.log("this is JSON:");
+      console.log(SummonerSpell);
+      console.log(Object.entries(SummonerSpell.data));
+      console.log(
+        Object.entries(SummonerSpell.data).filter((x) => {
+          return x[1].key === "7";
+        })[0][0]
+      );
     } else {
       setMatchesShown(
         <div>
