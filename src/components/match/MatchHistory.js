@@ -328,7 +328,7 @@ export default function MatchHistory({ summonerName }) {
           user[0].perks.styles[0].selections[0].perk
         );
       })[0];
-      const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
+      const primaryStyle = primaryRoute[1].slots[0].runes.filter((x) => {
         return x.id === user[0].perks.styles[0].selections[0].perk;
       });
       const subStyle = Object.entries(Runes).filter((x) => {
@@ -395,7 +395,6 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
-      console.log(Object.entries(Runes));
     } else {
       setMatchesShown(
         <div>
