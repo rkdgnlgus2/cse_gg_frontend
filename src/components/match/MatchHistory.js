@@ -304,36 +304,36 @@ export default function MatchHistory({ summonerName }) {
         return (
           element.summonerName.toLowerCase() === summonerName.toLowerCase()
         );
-      });
+      })[0];
 
-      const championName = user[0].championName;
+      const championName = user.championName;
       const items = [
-        user[0].item0,
-        user[0].item1,
-        user[0].item2,
-        user[0].item3,
-        user[0].item4,
-        user[0].item5,
-        user[0].item6,
+        user.item0,
+        user.item1,
+        user.item2,
+        user.item3,
+        user.item4,
+        user.item5,
+        user.item6,
       ];
 
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
-        return x[1].key === `${user[0].summoner1Id}`;
+        return x[1].key === `${user.summoner1Id}`;
       })[0][0];
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
-        return x[1].key === `${user[0].summoner2Id}`;
+        return x[1].key === `${user.summoner2Id}`;
       })[0][0];
 
       const primaryRoute = Runes.filter((x) => {
         return (
-          x.slots[0].runes[0].id === user[0].perks.styles[0].selections[0].perk
+          x.slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
         );
-      });
+      })[0];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user[0].perks.styles[0].selections[0].perk;
+        return x.id === user.perks.styles[0].selections[0].perk;
       })[0].icon;
       const subStyle = Runes.filter((x) => {
-        return x.id === user[0].perks.styles[1].style;
+        return x.id === user.perks.styles[1].style;
       })[0].icon;
 
       return (matchData = [
@@ -383,24 +383,6 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     if (!matchInfo) {
       console.log("props didn't come yet");
-      console.log("this is JSON:");
-      console.log(Runes);
-      console.log(
-        Runes.filter((x) => {
-          return x.id === 8100;
-        })[0].icon
-      );
-      console.log(
-        Runes.filter((x) => {
-          return x.slots[0].runes[0].id === 8112;
-        })
-      );
-      //console.log(Object.entries(Runes.data));
-      /*console.log(
-        Object.entries(SummonerSpell.data).filter((x) => {
-          return x[1].key === "7";
-        })[0][0]
-      );*/
     } else {
       setMatchesShown(
         <div>
