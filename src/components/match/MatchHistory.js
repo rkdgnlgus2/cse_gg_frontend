@@ -61,6 +61,15 @@ function Row(props) {
   const classes = useRowStyles();
 
   const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
+  const itemURLs = [
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[0]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[1]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[2]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[3]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[4]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[5]}.png`,
+    `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[6]}.png`,
+  ];
 
   console.log("current champion:");
   console.log(row.championName);
@@ -175,7 +184,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[0]}
                     />
                   </Card>
                 </Grid>
@@ -183,7 +192,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[1]}
                     />
                   </Card>
                 </Grid>
@@ -191,7 +200,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[2]}
                     />
                   </Card>
                 </Grid>
@@ -199,7 +208,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[3]}
                     />
                   </Card>
                 </Grid>
@@ -207,7 +216,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[4]}
                     />
                   </Card>
                 </Grid>
@@ -215,7 +224,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[5]}
                     />
                   </Card>
                 </Grid>
@@ -223,7 +232,7 @@ function Row(props) {
                   <Card className={classes.smallCard}>
                     <CardMedia
                       className={classes.Content}
-                      image="http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/SummonerFlash.png"
+                      image={itemURLs[6]}
                     />
                   </Card>
                 </Grid>
@@ -301,8 +310,17 @@ export default function MatchHistory({ summonerName }) {
       });
 
       const championName = user[0].championName;
+      const items = [
+        user[0].item0,
+        user[0].item1,
+        user[0].item2,
+        user[0].item3,
+        user[0].item4,
+        user[0].item5,
+        user[0].item6,
+      ];
 
-      return (matchData = [...matchData, { championName }]);
+      return (matchData = [...matchData, { championName, items }]);
     });
     return matchData;
   }
