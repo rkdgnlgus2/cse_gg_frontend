@@ -327,7 +327,7 @@ export default function MatchHistory({ summonerName }) {
       console.log("user got:");
       console.log(user);
 
-      const matchTotalKills = match.participants.reduce((acc, cur) => {
+      const matchTotalKills = match.info.participants.reduce((acc, cur) => {
         return acc + cur;
       }, 0);
 
