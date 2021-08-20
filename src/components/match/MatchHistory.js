@@ -124,10 +124,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia
-                    className={classes.Content}
-                    image={primaryStyleURL}
-                  />
+                  <CardMedia className={classes.Content} image={summoner1URL} />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -137,7 +134,7 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia className={classes.Content} image={subStyleURL} />
+                  <CardMedia className={classes.Content} image={summoner1URL} />
                 </Card>
               </Grid>
             </Grid>
