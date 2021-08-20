@@ -55,7 +55,8 @@ const useRowStyles = makeStyles({
     width: 200,
   },
 });
-function Row(row) {
+function Row(props) {
+  const { row } = props;
   const [open, setOpen] = useState(false);
   const classes = useRowStyles();
 
