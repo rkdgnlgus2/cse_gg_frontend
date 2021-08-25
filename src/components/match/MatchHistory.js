@@ -382,9 +382,9 @@ export default function MatchHistory({ summonerName }) {
       const primaryStyle = primaryRoute.slots[0].runes.find((x) => {
         return x.id === primaryId;
       }).icon;
-      const subStyle = Object.entries(Runes).filter((x) => {
+      const subStyle = Object.entries(Runes).find((x) => {
         return x[1].id === user.perks.styles[1].style;
-      })[0][1].icon;
+      })[1].icon;
       /*const primaryRoute = Runes.filter((x) => {
         return (
           x.slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
@@ -439,12 +439,12 @@ export default function MatchHistory({ summonerName }) {
   };
 
   useEffect(() => {
-    const primaryRoute = Object.entries(Runes).filter((x) => {
-      return x[1].slots[0].runes[0].id === 8112;
-    })[0][1];
-    const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-      return x.id === 8112;
-    })[0].icon;
+    const primaryRoute = Object.entries(Runes).find((x) => {
+      return x[1].slots[0].runes[0].id === 8005;
+    });
+    const primaryStyle = primaryRoute[1].slots[0].runes.find((x) => {
+      return x.id === 8005;
+    }).icon;
 
     console.log(primaryRoute);
     console.log(primaryStyle);
