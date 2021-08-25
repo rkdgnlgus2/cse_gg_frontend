@@ -369,36 +369,27 @@ export default function MatchHistory({ summonerName }) {
         user.item5,
         user.item6,
       ];
-      const primaryId = user.perks.styles[0].selections[0].perk;
-      console.log(primaryId);
+
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner1Id}`;
       })[0][0];
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
-      console.log(Object.entries(Runes));
-      const primaryRoute = Object.entries(Runes).find((x) => {
-        return x[1].slots[0].runes[0].id === primaryId;
+      let primaryStyle;
+      Runes.map((x) => {
+        const tmp = x.slots[0].runes.find((y) => {
+          return y.id === 8112;
+        });
+        if (typeof tmp === "undefined") {
+          return tmp === 1;
+        } else {
+          primaryStyle = tmp;
+        }
       });
-      console.log(primaryRoute);
-      const primaryStyle = primaryRoute.slots[0].runes.find((x) => {
-        return x.id === primaryId;
-      }).icon;
       const subStyle = Object.entries(Runes).find((x) => {
         return x[1].id === user.perks.styles[1].style;
       })[1].icon;
-      /*const primaryRoute = Runes.filter((x) => {
-        return (
-          x.slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
-        );
-      })[0];
-      const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user.perks.styles[0].selections[0].perk;
-      })[0].icon;
-      const subStyle = Runes.filter((x) => {
-        return x.id === user.perks.styles[1].style;
-      })[0].icon;*/
 
       return (matchData = [
         ...matchData,
@@ -442,15 +433,20 @@ export default function MatchHistory({ summonerName }) {
   };
 
   useEffect(() => {
-    const primaryRoute = Object.entries(Runes).find((x) => {
-      return x[1].slots[0].runes[0].id === 8005;
+    console.log(Runes);
+    let primaryRoute;
+    const primaryChecker = Runes.find((x) => {
+      const tmp = x.slots[0].runes.find((y) => {
+        return y.id === 8112;
+      });
+      if (typeof tmp === "undefined") {
+        return tmp === 1;
+      } else {
+        primaryRoute = tmp;
+      }
     });
-    const primaryStyle = primaryRoute[1].slots[0].runes.find((x) => {
-      return x.id === 8005;
-    }).icon;
 
     console.log(primaryRoute);
-    console.log(primaryStyle);
 
     getMatchInfo();
   }, []);
