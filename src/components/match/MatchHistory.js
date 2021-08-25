@@ -378,7 +378,8 @@ export default function MatchHistory({ summonerName }) {
       })[0][0];
       const primaryRoute = Object.entries(Runes).find((x) => {
         return x[1].slots[0].runes[0].id === primaryId;
-      })[1];
+      });
+      console.log(primaryRoute);
       const primaryStyle = primaryRoute.slots[0].runes.find((x) => {
         return x.id === primaryId;
       }).icon;
