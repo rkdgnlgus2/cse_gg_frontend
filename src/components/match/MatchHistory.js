@@ -376,6 +376,7 @@ export default function MatchHistory({ summonerName }) {
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
+      console.log(Object.entries(Runes));
       const primaryRoute = Object.entries(Runes).find((x) => {
         return x[1].slots[0].runes[0].id === primaryId;
       });
