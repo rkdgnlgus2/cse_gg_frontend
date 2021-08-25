@@ -376,10 +376,12 @@ export default function MatchHistory({ summonerName }) {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
       const primaryRoute = Object.entries(Runes).filter((x) => {
-        return x[1].slots[0].runes[0].id === 8112;
+        return (
+          x[1].slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
+        );
       })[0][1];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === 8112;
+        return x.id === user.perks.styles[0].selections[0].perk;
       })[0].icon;
       const subStyle = Object.entries(Runes).filter((x) => {
         return x[1].id === user.perks.styles[1].style;
