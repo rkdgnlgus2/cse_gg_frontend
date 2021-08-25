@@ -41,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SummonerInfo(props) {
   const { summonerInfo } = props;
-  const { summoner, leagueEntries } = summonerInfo;
-  const [summonerName, setSummonerName] = useState("");
+  const [summoner, setSummoner] = useState(null);
+  const [leagueEntries, setLeagueEntries] = useState(null);
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -59,7 +59,8 @@ export default function SummonerInfo(props) {
     if (!summonerInfo) {
       console.log("waiting at SummonerInfo.js!");
     } else {
-      setSummonerName(summonerInfo.name);
+      setSummoner(summonerInfo.summoner);
+      setLeagueEntries(summonerInfo.leagueEntries);
     }
   }, [summonerInfo]);
 
@@ -73,7 +74,7 @@ export default function SummonerInfo(props) {
             <Grid item xs={6} md={6} lg={9}>
               <TextField
                 id="summonerName"
-                defaultValue={summonerName}
+                defaultValue={summoner.name}
                 fullWidth
                 InputProps={{
                   readOnly: true,
