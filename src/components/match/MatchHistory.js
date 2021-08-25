@@ -370,6 +370,7 @@ export default function MatchHistory({ summonerName }) {
         user.item6,
       ];
       const primaryId = user.perks.styles[0].selections[0].perk;
+      console.log(primaryId);
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner1Id}`;
       })[0][0];
