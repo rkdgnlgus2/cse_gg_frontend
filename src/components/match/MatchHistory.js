@@ -312,7 +312,8 @@ function Row(props) {
   );
 }
 
-export default function MatchHistory({ summonerName }) {
+export default function MatchHistory(props) {
+  const { summonerName, summonerInfo } = props;
   const [matchInfo, setMatchInfo] = useState(null);
   const [matchesShown, setMatchesShown] = useState(<div></div>);
   const [rows, setRows] = useState([]);
@@ -433,8 +434,12 @@ export default function MatchHistory({ summonerName }) {
   };
 
   useEffect(() => {
-    getMatchInfo();
-  }, []);
+    if (!summonerInfo) {
+      console.log("waiting");
+    } else {
+      getMatchInfo();
+    }
+  }, [summonerInfo]);
 
   useEffect(() => {
     if (!matchInfo) {

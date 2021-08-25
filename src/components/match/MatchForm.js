@@ -135,7 +135,10 @@ function MatchForm({ summonerName }) {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <MatchHistory summonerName={summonerName} />
+                <MatchHistory
+                  summonerName={summonerName}
+                  summonerInfo={summonerInfo}
+                />
               </Paper>
             </Grid>
           </Grid>
