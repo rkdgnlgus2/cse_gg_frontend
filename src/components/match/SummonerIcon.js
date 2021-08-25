@@ -18,7 +18,13 @@ export default function SummonerIcon(props) {
   const { summonerInfo } = props;
   const classes = useRowStyles();
 
-  const imageURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo.profileIconId}.png`;
+  useEffect(() => {
+    console.log("summonerInfo gotten ");
+    console.log(summonerInfo);
+  }, []);
+
+  //const imageURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo.profileIconId}.png`;
+  const imageURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/685.png`;
   return (
     <Card className={classes.bigCard}>
       <CardMedia className={classes.Content} image={imageURL} />

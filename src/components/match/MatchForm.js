@@ -106,7 +106,7 @@ function MatchForm({ summonerName }) {
       );
       await setSummonerInfo(summonerInfo.data);
       console.log("current summonerInfo:");
-      console.log(summonerInfo);
+      console.log(summonerInfo.data);
       return;
     } catch (error) {
       console.log(error);
