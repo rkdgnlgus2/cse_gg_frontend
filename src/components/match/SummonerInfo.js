@@ -46,10 +46,10 @@ export default function SummonerInfo(props) {
 
   const onClick = () => {
     axios.post(
-      `http://3.37.201.192:8080/${matchAPI.updateHistory}${summonerName}`
+      `http://3.37.201.192:8080/${matchAPI.updateHistory}${summonerInfo.name}`
     );
     axios.post(
-      `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerName}`
+      `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerInfo.name}`
     );
   };
 
