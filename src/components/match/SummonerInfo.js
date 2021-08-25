@@ -46,13 +46,14 @@ export default function SummonerInfo(props) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  const onClick = () => {
-    axios.post(
+  const onClick = async () => {
+    await axios.post(
       `http://3.37.201.192:8080/${matchAPI.updateHistory}${summoner.name}`
     );
-    axios.post(
+    await axios.post(
       `http://3.37.201.192:8080/${summonerAPI.summoner}${summoner.name}`
     );
+    window.location.reload();
   };
 
   useEffect(() => {

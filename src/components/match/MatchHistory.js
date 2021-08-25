@@ -424,7 +424,7 @@ export default function MatchHistory(props) {
         `http://3.37.201.192:8080/${matchAPI.getHistory}${summonerName}`
       );
       await setMatchInfo(matchInfo.data);
-      await setRows(rows.concat(createMainData(matchInfo.data)));
+      await setRows(rows.concat(createMainData(matchInfo.data).reverse()));
       return;
     } catch (error) {
       console.log(error);
