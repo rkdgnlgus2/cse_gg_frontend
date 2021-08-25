@@ -347,6 +347,7 @@ export default function MatchHistory({ summonerName }) {
           minute: "2-digit",
           second: "2-digit",
           hour12: false,
+          hourCycle: "h23",
         }).format(gameCreation),
         "MM/DD/YYYY, hh:mm:ss"
       ).fromNow();
