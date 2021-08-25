@@ -26,7 +26,7 @@ export default function SummonerIcon(props) {
       console.log("summonerInfo gotten ");
       console.log(summonerInfo);
       setImageURL(
-        `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo.profileIconId}.png`
+        `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo[1].profileIconId}.png`
       );
     }
   }, [summonerInfo]);
