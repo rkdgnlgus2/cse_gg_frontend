@@ -8,6 +8,10 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
+import axios from "axios";
+import * as matchAPI from "../../lib/api";
+import * as summonerAPI from "../../lib/api";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -39,6 +43,16 @@ export default function SummonerInfo(props) {
   const { summonerInfo } = props;
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  const onClick = () => {
+    axios.post(
+      `http://3.37.201.192:8080/${matchAPI.updateHistory}${summonerName}`
+    );
+    axios.post(
+      `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerName}`
+    );
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -49,7 +63,7 @@ export default function SummonerInfo(props) {
             <Grid item xs={6} md={6} lg={9}>
               <TextField
                 id="summonerName"
-                defaultValue="소환사명"
+                defaultValue={summonerInfo.name}
                 fullWidth
                 InputProps={{
                   readOnly: true,
@@ -58,7 +72,7 @@ export default function SummonerInfo(props) {
               />
             </Grid>
             <Grid item xs={6} md={6} lg={3} alignContent="flex-end">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={onClick}>
                 전적 갱신
               </Button>
             </Grid>

@@ -104,7 +104,7 @@ function MatchForm({ summonerName }) {
       const summonerInfo = await axios.get(
         `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerName}`
       );
-      await setSummonerInfo(summonerInfo);
+      await setSummonerInfo(summonerInfo.data);
       console.log("current summonerInfo:");
       console.log(summonerInfo);
       return;
