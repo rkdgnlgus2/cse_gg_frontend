@@ -384,7 +384,7 @@ export default function MatchHistory({ summonerName }) {
         if (typeof tmp === "undefined") {
           return tmp === 1;
         } else {
-          primaryStyle = tmp;
+          primaryStyle = tmp.icon;
         }
       });
       const subStyle = Object.entries(Runes).find((x) => {
