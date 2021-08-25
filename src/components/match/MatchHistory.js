@@ -379,7 +379,7 @@ export default function MatchHistory({ summonerName }) {
       let primaryStyle;
       Runes.map((x) => {
         const tmp = x.slots[0].runes.find((y) => {
-          return y.id === 8112;
+          return y.id === user.perks.styles[0].selections[0].perk;
         });
         if (typeof tmp === "undefined") {
           return tmp === 1;
@@ -433,21 +433,6 @@ export default function MatchHistory({ summonerName }) {
   };
 
   useEffect(() => {
-    console.log(Runes);
-    let primaryRoute;
-    const primaryChecker = Runes.find((x) => {
-      const tmp = x.slots[0].runes.find((y) => {
-        return y.id === 8112;
-      });
-      if (typeof tmp === "undefined") {
-        return tmp === 1;
-      } else {
-        primaryRoute = tmp;
-      }
-    });
-
-    console.log(primaryRoute);
-
     getMatchInfo();
   }, []);
 
