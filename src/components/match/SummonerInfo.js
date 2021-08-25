@@ -44,17 +44,13 @@ export default function SummonerInfo(props) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  /*const onClick = () => {
+  const onClick = () => {
     axios.post(
       `http://3.37.201.192:8080/${matchAPI.updateHistory}${summonerInfo.name}`
     );
     axios.post(
       `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerInfo.name}`
     );
-  };*/
-
-  const onClick = () => {
-    console.log("click click!");
   };
 
   return (

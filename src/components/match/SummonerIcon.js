@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardMedia } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
@@ -16,15 +16,21 @@ const useRowStyles = makeStyles({
 
 export default function SummonerIcon(props) {
   const { summonerInfo } = props;
+  const [imageURL, setImageURL] = useState(``);
   const classes = useRowStyles();
 
   useEffect(() => {
-    console.log("summonerInfo gotten ");
-    console.log(summonerInfo);
-  }, []);
+    if (!summonerInfo) {
+      console.log("waiting for summonerInfo coming");
+    } else {
+      console.log("summonerInfo gotten ");
+      console.log(summonerInfo);
+      setImageURL(
+        `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo.profileIconId}.png`
+      );
+    }
+  }, [summonerInfo]);
 
-  //const imageURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${summonerInfo.profileIconId}.png`;
-  const imageURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/685.png`;
   return (
     <Card className={classes.bigCard}>
       <CardMedia className={classes.Content} image={imageURL} />
