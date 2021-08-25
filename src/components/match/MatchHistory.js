@@ -67,7 +67,7 @@ function Row(props) {
   const championURL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${row.championName}.png`;
   const summoner1URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner1id}.png`;
   const summoner2URL = `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/${row.summoner2id}.png`;
-  //const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
+  const primaryStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.primaryStyle}`;
   const subStyleURL = `https://ddragon.leagueoflegends.com/cdn/img/${row.subStyle}`;
   const itemURLs = [
     `http://ddragon.leagueoflegends.com/cdn/11.16.1/img/item/${row.items[0]}.png`,
@@ -142,7 +142,10 @@ function Row(props) {
               </Grid>
               <Grid item xs={6}>
                 <Card className={classes.smallCard}>
-                  <CardMedia className={classes.Content} image={subStyleURL} />
+                  <CardMedia
+                    className={classes.Content}
+                    image={primaryStyleURL}
+                  />
                 </Card>
               </Grid>
               <Grid item xs={6}>
@@ -344,7 +347,7 @@ export default function MatchHistory({ summonerName }) {
           minute: "2-digit",
           second: "2-digit",
           hour12: false,
-        }).format(gameCreation + gameDuration),
+        }).format(gameCreation),
         "MM/DD/YYYY, hh:mm:ss a"
       ).fromNow();
 
@@ -372,15 +375,12 @@ export default function MatchHistory({ summonerName }) {
       const summoner2id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
-      /*const primaryRoute = Object.entries(Runes).filter((x) => {
-        return (
-          x[1].slots[0].runes[0].id ===
-          user.perks.styles[0].selections[0].perk
-        );
-      })[0];
+      const primaryRoute = Object.entries(Runes).filter((x) => {
+        return x[1].slots[0].runes[0].id === 8112;
+      })[0][1];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user.perks.styles[0].selections[0].perk;
-      });*/
+        return x.id === 8112;
+      })[0].icon;
       const subStyle = Object.entries(Runes).filter((x) => {
         return x[1].id === user.perks.styles[1].style;
       })[0][1].icon;
@@ -415,6 +415,7 @@ export default function MatchHistory({ summonerName }) {
           win,
           matchTotalKills,
           timedelta,
+          primaryStyle,
         },
       ]);
     });
@@ -437,24 +438,16 @@ export default function MatchHistory({ summonerName }) {
   };
 
   useEffect(() => {
-    console.log("showing summonerName:" + summonerName);
-    console.log("getting matchHistory of " + summonerName);
-    moment.locale("ko");
+    const primaryRoute = Object.entries(Runes).filter((x) => {
+      return x[1].slots[0].runes[0].id === 8112;
+    })[0][1];
+    const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
+      return x.id === 8112;
+    })[0].icon;
 
-    console.log(
-      moment(
-        new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        }).format(1234567000),
-        "MM/DD/YYYY, hh:mm:ss a"
-      ).fromNow()
-    );
+    console.log(primaryRoute);
+    console.log(primaryStyle);
+
     getMatchInfo();
   }, []);
 
