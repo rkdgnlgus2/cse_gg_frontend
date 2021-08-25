@@ -74,7 +74,7 @@ export default function SummonerInfo(props) {
             <Grid item xs={6} md={6} lg={9}>
               <TextField
                 id="summonerName"
-                defaultValue={summoner && summoner.name}
+                value={summoner && summoner.name}
                 fullWidth
                 InputProps={{
                   readOnly: true,
