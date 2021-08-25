@@ -19,6 +19,7 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import moment from "moment";
+import "moment/locale/ko";
 
 import * as matchAPI from "../../lib/api/match";
 
@@ -96,20 +97,6 @@ function Row(props) {
     }
   };
 
-  const timelapse = () => {
-    if (row.timedelta.diff("years") > 0) {
-      return `${row.timedelta.diff("years")}년 전`;
-    } else if (row.timedelta.diff("months") > 0) {
-      return `${row.timedelta.diff("months")}개월 전`;
-    } else if (row.timedelta.diff("days") > 0) {
-      return `${row.timedelta.diff("days")}일 전`;
-    } else if (row.timedelta.diff("hours") > 0) {
-      return `${row.timedelta.diff("hours")}시간 전`;
-    } else {
-      return `${row.timedelta.diff("minutes")}분 전`;
-    }
-  };
-
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -128,7 +115,9 @@ function Row(props) {
             InputProps={{ disableUnderline: true }}
             id="mode-and-time"
             multiline
-            value={`${gameMode()}\n ${timelapse}\n${isWin}\n${durationMinute}분 ${durationSecond}초`}
+            value={`${gameMode()}\n ${
+              row.timedelta
+            }\n${isWin}\n${durationMinute}분 ${durationSecond}초`}
             maxRows={4}
           />
         </TableCell>
@@ -346,7 +335,18 @@ export default function MatchHistory({ summonerName }) {
       }
       const matchTotalKills = matchkillreducer;
       const { gameCreation, gameDuration, gameMode } = match.info;
-      const timedelta = moment.range(gameCreation + gameDuration, Date.now());
+      const timedelta = moment(
+        new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }).format(gameCreation + gameDuration),
+        "MM/DD/YYYY, hh:mm:ss a"
+      ).fromNow();
 
       const {
         championName,
@@ -439,6 +439,22 @@ export default function MatchHistory({ summonerName }) {
   useEffect(() => {
     console.log("showing summonerName:" + summonerName);
     console.log("getting matchHistory of " + summonerName);
+    moment.locale("ko");
+
+    console.log(
+      moment(
+        new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        }).format(1234567000),
+        "MM/DD/YYYY, hh:mm:ss a"
+      ).fromNow()
+    );
     getMatchInfo();
   }, []);
 
