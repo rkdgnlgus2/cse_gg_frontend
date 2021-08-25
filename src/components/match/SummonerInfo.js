@@ -9,8 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
 import axios from "axios";
-import * as matchAPI from "../../lib/api";
-import * as summonerAPI from "../../lib/api";
+import * as matchAPI from "../../lib/api/match";
+import * as summonerAPI from "../../lib/api/summoner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
