@@ -43,7 +43,6 @@ export default function SummonerInfo(props) {
   const { summonerInfo } = props;
   const [summoner, setSummoner] = useState(null);
   const [leagueEntries, setLeagueEntries] = useState(null);
-  const [summonerName, setSummonerName] = useState("");
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -62,7 +61,6 @@ export default function SummonerInfo(props) {
     } else {
       setSummoner(summonerInfo.summoner);
       setLeagueEntries(summonerInfo.leagueEntries);
-      setSummonerName(summoner.name);
     }
   }, [summonerInfo]);
 
@@ -76,7 +74,7 @@ export default function SummonerInfo(props) {
             <Grid item xs={6} md={6} lg={9}>
               <TextField
                 id="summonerName"
-                defaultValue={summonerName}
+                defaultValue={summoner && summoner.name}
                 fullWidth
                 InputProps={{
                   readOnly: true,
