@@ -369,6 +369,7 @@ export default function MatchHistory({ summonerName }) {
         user.item5,
         user.item6,
       ];
+      const primaryId = user.perks.styles[0].selections[0].perk;
       const summoner1id = Object.entries(SummonerSpell.data).filter((x) => {
         return x[1].key === `${user.summoner1Id}`;
       })[0][0];
@@ -376,12 +377,10 @@ export default function MatchHistory({ summonerName }) {
         return x[1].key === `${user.summoner2Id}`;
       })[0][0];
       const primaryRoute = Object.entries(Runes).filter((x) => {
-        return (
-          x[1].slots[0].runes[0].id === user.perks.styles[0].selections[0].perk
-        );
+        return x[1].slots[0].runes[0].id === primaryId;
       })[0][1];
       const primaryStyle = primaryRoute.slots[0].runes.filter((x) => {
-        return x.id === user.perks.styles[0].selections[0].perk;
+        return x.id === primaryId;
       })[0].icon;
       const subStyle = Object.entries(Runes).filter((x) => {
         return x[1].id === user.perks.styles[1].style;
