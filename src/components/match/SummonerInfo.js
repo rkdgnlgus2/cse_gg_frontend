@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SummonerInfo(props) {
   const { summonerInfo } = props;
+  const [summonerName, setSummonerName] = useState("");
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -53,6 +54,14 @@ export default function SummonerInfo(props) {
     );
   };
 
+  useEffect(() => {
+    if (!summonerInfo) {
+      console.log("waiting at SummonerInfo.js!");
+    } else {
+      setSummonerName(summonerInfo.name);
+    }
+  }, [summonerInfo]);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -63,7 +72,7 @@ export default function SummonerInfo(props) {
             <Grid item xs={6} md={6} lg={9}>
               <TextField
                 id="summonerName"
-                defaultValue="Furth3r"
+                defaultValue={summonerName}
                 fullWidth
                 InputProps={{
                   readOnly: true,
