@@ -105,6 +105,8 @@ function MatchForm({ summonerName }) {
         `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerName}`
       );
       await setSummonerInfo(summonerInfo);
+      console.log("current summonerInfo:");
+      console.log(summonerInfo);
       return;
     } catch (error) {
       console.log(error);
