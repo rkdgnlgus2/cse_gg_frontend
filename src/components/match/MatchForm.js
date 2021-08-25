@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,6 +9,9 @@ import Paper from "@material-ui/core/Paper";
 import MatchHistory from "./MatchHistory";
 import SummonerIcon from "./SummonerIcon";
 import SummonerInfo from "./SummonerInfo";
+
+import * as summonerAPI from "../../lib/api/summoner";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -92,8 +95,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MatchForm({ summonerName }) {
+  const [summonerInfo, setSummonerInfo] = useState(null);
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  const getSummonerInfo = async () => {
+    try {
+      const summonerInfo = await axios.get(
+        `http://3.37.201.192:8080/${summonerAPI.summoner}${summonerName}`
+      );
+      await setSummonerInfo(summonerInfo);
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSummonerInfo();
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -103,12 +123,12 @@ function MatchForm({ summonerName }) {
           <Grid container spacing={3}>
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <SummonerIcon />
+                <SummonerIcon summonerInfo={summonerInfo} />
               </Paper>
             </Grid>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <SummonerInfo />
+                <SummonerInfo summonerInfo={summonerInfo} />
               </Paper>
             </Grid>
             <Grid item xs={12}>

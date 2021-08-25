@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SummonerInfo() {
+export default function SummonerInfo(props) {
+  const { summonerInfo } = props;
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
